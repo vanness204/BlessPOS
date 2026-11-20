@@ -1,0 +1,250 @@
+﻿TABLE_NAME	COLUMN_NAME	COLUMN_TYPE	IS_NULLABLE	COLUMN_DEFAULT	COLUMN_KEY	EXTRA
+attendance_requests	id	bigint unsigned	NO	NULL	PRI	auto_increment
+attendance_requests	tenant_id	bigint unsigned	NO	NULL	MUL	
+attendance_requests	outlet_id	bigint unsigned	NO	NULL	MUL	
+attendance_requests	employee_id	bigint unsigned	NO	NULL	MUL	
+attendance_requests	attendance_id	bigint unsigned	YES	NULL	MUL	
+attendance_requests	request_type	varchar(30)	NO	NULL		
+attendance_requests	start_date	date	NO	NULL		
+attendance_requests	end_date	date	YES	NULL		
+attendance_requests	requested_check_in_at	datetime	YES	NULL		
+attendance_requests	requested_check_out_at	datetime	YES	NULL		
+attendance_requests	reason	text	YES	NULL		
+attendance_requests	attachment	varchar(255)	YES	NULL		
+attendance_requests	status	varchar(20)	NO	pending		
+attendance_requests	reviewed_by	bigint unsigned	YES	NULL	MUL	
+attendance_requests	reviewed_at	timestamp	YES	NULL		
+attendance_requests	review_notes	text	YES	NULL		
+attendance_requests	created_at	timestamp	YES	NULL		
+attendance_requests	updated_at	timestamp	YES	NULL		
+attendances	id	bigint unsigned	NO	NULL	PRI	auto_increment
+attendances	tenant_id	bigint unsigned	NO	NULL	MUL	
+attendances	outlet_id	bigint unsigned	NO	NULL	MUL	
+attendances	employee_id	bigint unsigned	NO	NULL	MUL	
+attendances	shift_id	bigint unsigned	YES	NULL	MUL	
+attendances	attendance_date	date	NO	NULL		
+attendances	check_in_at	datetime	YES	NULL		
+attendances	check_out_at	datetime	YES	NULL		
+attendances	work_duration_minutes	int unsigned	NO	0		
+attendances	status	varchar(30)	NO	present		
+attendances	check_in_latitude	decimal(10,7)	YES	NULL		
+attendances	check_in_longitude	decimal(10,7)	YES	NULL		
+attendances	check_out_latitude	decimal(10,7)	YES	NULL		
+attendances	check_out_longitude	decimal(10,7)	YES	NULL		
+attendances	check_in_photo	varchar(255)	YES	NULL		
+attendances	check_out_photo	varchar(255)	YES	NULL		
+attendances	notes	text	YES	NULL		
+attendances	corrected_by	bigint unsigned	YES	NULL	MUL	
+attendances	corrected_at	timestamp	YES	NULL		
+attendances	created_at	timestamp	YES	NULL		
+attendances	updated_at	timestamp	YES	NULL		
+cache	key	varchar(255)	NO	NULL	PRI	
+cache	value	mediumtext	NO	NULL		
+cache	expiration	bigint	NO	NULL	MUL	
+cache_locks	key	varchar(255)	NO	NULL	PRI	
+cache_locks	owner	varchar(255)	NO	NULL		
+cache_locks	expiration	bigint	NO	NULL	MUL	
+employee_shift_assignments	id	bigint unsigned	NO	NULL	PRI	auto_increment
+employee_shift_assignments	tenant_id	bigint unsigned	NO	NULL	MUL	
+employee_shift_assignments	outlet_id	bigint unsigned	NO	NULL	MUL	
+employee_shift_assignments	employee_id	bigint unsigned	NO	NULL	MUL	
+employee_shift_assignments	shift_id	bigint unsigned	NO	NULL	MUL	
+employee_shift_assignments	assignment_date	date	NO	NULL		
+employee_shift_assignments	status	varchar(20)	NO	assigned		
+employee_shift_assignments	notes	text	YES	NULL		
+employee_shift_assignments	created_at	timestamp	YES	NULL		
+employee_shift_assignments	updated_at	timestamp	YES	NULL		
+employees	id	bigint unsigned	NO	NULL	PRI	auto_increment
+employees	tenant_id	bigint unsigned	NO	NULL	MUL	
+employees	outlet_id	bigint unsigned	NO	NULL	MUL	
+employees	employee_code	varchar(50)	NO	NULL		
+employees	name	varchar(150)	NO	NULL		
+employees	job_title	varchar(100)	YES	NULL		
+employees	phone	varchar(30)	YES	NULL		
+employees	email	varchar(255)	YES	NULL		
+employees	pin_hash	varchar(255)	YES	NULL		
+employees	join_date	date	YES	NULL		
+employees	resign_date	date	YES	NULL		
+employees	status	varchar(20)	NO	active		
+employees	notes	text	YES	NULL		
+employees	created_at	timestamp	YES	NULL		
+employees	updated_at	timestamp	YES	NULL		
+employees	deleted_at	timestamp	YES	NULL		
+failed_jobs	id	bigint unsigned	NO	NULL	PRI	auto_increment
+failed_jobs	uuid	varchar(255)	NO	NULL	UNI	
+failed_jobs	connection	varchar(255)	NO	NULL	MUL	
+failed_jobs	queue	varchar(255)	NO	NULL		
+failed_jobs	payload	longtext	NO	NULL		
+failed_jobs	exception	longtext	NO	NULL		
+failed_jobs	failed_at	timestamp	NO	CURRENT_TIMESTAMP		DEFAULT_GENERATED
+job_batches	id	varchar(255)	NO	NULL	PRI	
+job_batches	name	varchar(255)	NO	NULL		
+job_batches	total_jobs	int	NO	NULL		
+job_batches	pending_jobs	int	NO	NULL		
+job_batches	failed_jobs	int	NO	NULL		
+job_batches	failed_job_ids	longtext	NO	NULL		
+job_batches	options	mediumtext	YES	NULL		
+job_batches	cancelled_at	int	YES	NULL		
+job_batches	created_at	int	NO	NULL		
+job_batches	finished_at	int	YES	NULL		
+jobs	id	bigint unsigned	NO	NULL	PRI	auto_increment
+jobs	queue	varchar(255)	NO	NULL	MUL	
+jobs	payload	longtext	NO	NULL		
+jobs	attempts	smallint unsigned	NO	NULL		
+jobs	reserved_at	int unsigned	YES	NULL		
+jobs	available_at	int unsigned	NO	NULL		
+jobs	created_at	int unsigned	NO	NULL		
+migrations	id	int unsigned	NO	NULL	PRI	auto_increment
+migrations	migration	varchar(255)	NO	NULL		
+migrations	batch	int	NO	NULL		
+outlet_bank_accounts	id	bigint unsigned	NO	NULL	PRI	auto_increment
+outlet_bank_accounts	outlet_id	bigint unsigned	NO	NULL	MUL	
+outlet_bank_accounts	bank_name	varchar(100)	NO	NULL		
+outlet_bank_accounts	account_holder_name	varchar(150)	NO	NULL		
+outlet_bank_accounts	account_number	varchar(50)	NO	NULL		
+outlet_bank_accounts	is_default	tinyint(1)	NO	0		
+outlet_bank_accounts	is_active	tinyint(1)	NO	1		
+outlet_bank_accounts	created_at	timestamp	YES	NULL		
+outlet_bank_accounts	updated_at	timestamp	YES	NULL		
+outlet_report_recipients	id	bigint unsigned	NO	NULL	PRI	auto_increment
+outlet_report_recipients	outlet_id	bigint unsigned	NO	NULL	MUL	
+outlet_report_recipients	report_type	varchar(30)	NO	NULL		
+outlet_report_recipients	email	varchar(255)	NO	NULL		
+outlet_report_recipients	is_active	tinyint(1)	NO	1		
+outlet_report_recipients	created_at	timestamp	YES	NULL		
+outlet_report_recipients	updated_at	timestamp	YES	NULL		
+outlet_settings	id	bigint unsigned	NO	NULL	PRI	auto_increment
+outlet_settings	shift_enabled	tinyint(1)	NO	0		
+outlet_settings	outlet_id	bigint unsigned	NO	NULL	UNI	
+outlet_settings	custom_closing_time_enabled	tinyint(1)	NO	0		
+outlet_settings	closing_time	time	YES	NULL		
+outlet_settings	custom_price_discount_enabled	tinyint(1)	NO	0		
+outlet_settings	sales_tax_enabled	tinyint(1)	NO	0		
+outlet_settings	sales_tax_rate	decimal(8,4)	NO	0.0000		
+outlet_settings	tax_after_discount	tinyint(1)	NO	0		
+outlet_settings	service_charge_enabled	tinyint(1)	NO	0		
+outlet_settings	service_charge_rate	decimal(8,4)	NO	0.0000		
+outlet_settings	service_charge_before_discount	tinyint(1)	NO	0		
+outlet_settings	service_charge_tax_enabled	tinyint(1)	NO	0		
+outlet_settings	service_charge_tax_name	varchar(255)	YES	NULL		
+outlet_settings	service_charge_tax_rate	decimal(8,4)	NO	0.0000		
+outlet_settings	cash_payment_account_name	varchar(255)	NO	Kas		
+outlet_settings	receipt_note	text	YES	NULL		
+outlet_settings	created_at	timestamp	YES	NULL		
+outlet_settings	updated_at	timestamp	YES	NULL		
+outlet_social_media	id	bigint unsigned	NO	NULL	PRI	auto_increment
+outlet_social_media	outlet_id	bigint unsigned	NO	NULL	MUL	
+outlet_social_media	platform	varchar(30)	NO	NULL		
+outlet_social_media	username	varchar(150)	NO	NULL		
+outlet_social_media	url	varchar(255)	YES	NULL		
+outlet_social_media	is_active	tinyint(1)	NO	1		
+outlet_social_media	created_at	timestamp	YES	NULL		
+outlet_social_media	updated_at	timestamp	YES	NULL		
+outlets	id	bigint unsigned	NO	NULL	PRI	auto_increment
+outlets	tenant_id	bigint unsigned	NO	NULL	MUL	
+outlets	name	varchar(255)	NO	NULL		
+outlets	code	varchar(50)	NO	NULL		
+outlets	type	varchar(50)	YES	NULL		
+outlets	default_warehouse_id	bigint unsigned	YES	NULL		
+outlets	category	varchar(255)	YES	NULL		
+outlets	phone	varchar(30)	YES	NULL		
+outlets	email	varchar(255)	YES	NULL		
+outlets	currency	varchar(3)	NO	IDR		
+outlets	logo	varchar(255)	YES	NULL		
+outlets	address	text	YES	NULL		
+outlets	city	varchar(255)	YES	NULL		
+outlets	province	varchar(255)	YES	NULL		
+outlets	postal_code	varchar(10)	YES	NULL		
+outlets	latitude	decimal(10,7)	YES	NULL		
+outlets	longitude	decimal(10,7)	YES	NULL		
+outlets	timezone	varchar(50)	NO	Asia/Jakarta		
+outlets	status	varchar(20)	NO	active		
+outlets	created_at	timestamp	YES	NULL		
+outlets	updated_at	timestamp	YES	NULL		
+outlets	deleted_at	timestamp	YES	NULL		
+password_reset_tokens	email	varchar(255)	NO	NULL	PRI	
+password_reset_tokens	token	varchar(255)	NO	NULL		
+password_reset_tokens	created_at	timestamp	YES	NULL		
+permissions	id	bigint unsigned	NO	NULL	PRI	auto_increment
+permissions	module	varchar(100)	NO	NULL	MUL	
+permissions	name	varchar(255)	NO	NULL		
+permissions	slug	varchar(150)	NO	NULL	UNI	
+permissions	description	text	YES	NULL		
+permissions	created_at	timestamp	YES	NULL		
+permissions	updated_at	timestamp	YES	NULL		
+platform_admins	id	bigint unsigned	NO	NULL	PRI	auto_increment
+platform_admins	name	varchar(255)	NO	NULL		
+platform_admins	email	varchar(255)	NO	NULL	UNI	
+platform_admins	password	varchar(255)	NO	NULL		
+platform_admins	phone	varchar(30)	YES	NULL		
+platform_admins	status	varchar(20)	NO	active		
+platform_admins	last_login_at	timestamp	YES	NULL		
+platform_admins	remember_token	varchar(100)	YES	NULL		
+platform_admins	created_at	timestamp	YES	NULL		
+platform_admins	updated_at	timestamp	YES	NULL		
+role_permissions	id	bigint unsigned	NO	NULL	PRI	auto_increment
+role_permissions	role_id	bigint unsigned	NO	NULL	MUL	
+role_permissions	permission_id	bigint unsigned	NO	NULL	MUL	
+role_permissions	created_at	timestamp	YES	NULL		
+role_permissions	updated_at	timestamp	YES	NULL		
+roles	id	bigint unsigned	NO	NULL	PRI	auto_increment
+roles	tenant_id	bigint unsigned	NO	NULL	MUL	
+roles	name	varchar(255)	NO	NULL		
+roles	slug	varchar(100)	NO	NULL		
+roles	description	text	YES	NULL		
+roles	is_system	tinyint(1)	NO	0		
+roles	created_at	timestamp	YES	NULL		
+roles	updated_at	timestamp	YES	NULL		
+sessions	id	varchar(255)	NO	NULL	PRI	
+sessions	user_id	bigint unsigned	YES	NULL	MUL	
+sessions	ip_address	varchar(45)	YES	NULL		
+sessions	user_agent	text	YES	NULL		
+sessions	payload	longtext	NO	NULL		
+sessions	last_activity	int	NO	NULL	MUL	
+shifts	id	bigint unsigned	NO	NULL	PRI	auto_increment
+shifts	tenant_id	bigint unsigned	NO	NULL	MUL	
+shifts	outlet_id	bigint unsigned	NO	NULL	MUL	
+shifts	name	varchar(100)	NO	NULL		
+shifts	code	varchar(30)	NO	NULL		
+shifts	start_time	time	NO	NULL		
+shifts	end_time	time	NO	NULL		
+shifts	break_duration_minutes	smallint unsigned	NO	0		
+shifts	late_tolerance_minutes	smallint unsigned	NO	0		
+shifts	crosses_midnight	tinyint(1)	NO	0		
+shifts	is_active	tinyint(1)	NO	1		
+shifts	created_at	timestamp	YES	NULL		
+shifts	updated_at	timestamp	YES	NULL		
+tenants	id	bigint unsigned	NO	NULL	PRI	auto_increment
+tenants	name	varchar(255)	NO	NULL		
+tenants	slug	varchar(255)	NO	NULL	UNI	
+tenants	business_type	varchar(255)	YES	NULL		
+tenants	phone	varchar(255)	YES	NULL		
+tenants	email	varchar(255)	YES	NULL		
+tenants	address	varchar(255)	YES	NULL		
+tenants	city	varchar(255)	YES	NULL		
+tenants	province	varchar(255)	YES	NULL		
+tenants	status	varchar(255)	NO	active		
+tenants	trial_ends_at	timestamp	YES	NULL		
+tenants	subscription_ends_at	timestamp	YES	NULL		
+tenants	created_at	timestamp	YES	NULL		
+tenants	updated_at	timestamp	YES	NULL		
+tenants	deleted_at	timestamp	YES	NULL		
+user_outlets	id	bigint unsigned	NO	NULL	PRI	auto_increment
+user_outlets	user_id	bigint unsigned	NO	NULL	MUL	
+user_outlets	outlet_id	bigint unsigned	NO	NULL	MUL	
+user_outlets	role_id	bigint unsigned	YES	NULL	MUL	
+user_outlets	is_active	tinyint(1)	NO	1		
+user_outlets	created_at	timestamp	YES	NULL		
+user_outlets	updated_at	timestamp	YES	NULL		
+users	id	bigint unsigned	NO	NULL	PRI	auto_increment
+users	tenant_id	bigint unsigned	NO	NULL	MUL	
+users	name	varchar(255)	NO	NULL		
+users	email	varchar(255)	NO	NULL	UNI	
+users	email_verified_at	timestamp	YES	NULL		
+users	password	varchar(255)	NO	NULL		
+users	account_type	varchar(20)	NO	member		
+users	phone	varchar(30)	YES	NULL		
+users	status	varchar(20)	NO	active		
+users	remember_token	varchar(100)	YES	NULL		
+users	created_at	timestamp	YES	NULL		
+users	updated_at	timestamp	YES	NULL		
