@@ -38,11 +38,16 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
+
+    'platform_admin' => [
+        'driver' => 'session',
+        'provider' => 'platform_admins',
+    ],
+],
 
     /*
     |--------------------------------------------------------------------------
@@ -62,16 +67,22 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', User::class),
-        ],
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => env('AUTH_MODEL', User::class),
+    ],
+
+    'platform_admins' => [
+        'driver' => 'eloquent',
+        'model' => \App\Models\PlatformAdmin::class,
+    ],
+],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
+
 
     /*
     |--------------------------------------------------------------------------
