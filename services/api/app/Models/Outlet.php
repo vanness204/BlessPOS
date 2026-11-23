@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Outlet extends Model
@@ -47,6 +48,11 @@ class Outlet extends Model
         return $this->belongsTo(Tenant::class);
     }
 
+    public function settings(): HasOne
+    {
+        return $this->hasOne(OutletSetting::class);
+    }
+
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_outlets')
@@ -56,6 +62,7 @@ class Outlet extends Model
 
     public function activeUsers(): BelongsToMany
     {
-        return $this->users()->wherePivot('is_active', true);
+        return $this->users()
+            ->wherePivot('is_active', true);
     }
 }

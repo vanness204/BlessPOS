@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 #[Fillable([
     'tenant_id',
@@ -24,7 +25,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     public function tenant(): BelongsTo
     {
@@ -47,7 +48,8 @@ class User extends Authenticatable
 
     public function activeOutlets(): BelongsToMany
     {
-        return $this->outlets()->wherePivot('is_active', true);
+        return $this->outlets()
+            ->wherePivot('is_active', true);
     }
 
     protected function casts(): array
